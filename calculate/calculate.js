@@ -50,6 +50,7 @@ module.exports = function(RED) {
         }
 
         node.on("input", function(msg) {
+            msg.payload = parseFloat(msg.payload);
             msg.topic = msg.topic || '_none_';
             msg.pushedAt = new Date().getTime();
             var topic = node.buffer.find(b => typeof(b[0]) == 'object' && b.find(b2 => b2.topic == msg.topic));
